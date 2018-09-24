@@ -1,0 +1,23 @@
+# Configuration of the CI pipeline
+name: 'ses'
+canonical: 'ses'
+description: 'Simple Email Service stack will create an SES iam user and a SQS queue if needed to manage bounced emails.'
+keywords:
+  - 'ses'
+  - 'aws'
+author: 'Cycloid'
+image: 'https://raw.githubusercontent.com/cycloid-community-catalog/stack-ses/master/icon.png'
+type: 'stack'
+config:
+  # Configuration of the CI pipeline
+  pipeline:
+    pipeline:
+      path: 'pipeline/ses.yml'
+    variables:
+      path: 'pipeline/variables.sample.yml'
+
+  # Configuration of terraform to setup the infrastructure
+  terraform:
+    ses:
+      path: 'terraform/ses.tf.sample'
+      destination: 'terraform/ses/($ environment $)/ses.tf'
