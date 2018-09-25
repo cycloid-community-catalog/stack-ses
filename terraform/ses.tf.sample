@@ -1,0 +1,16 @@
+module "ses" {
+  #####################################
+  # Do not modify the following lines #
+  source      = "module-ses"
+  project     = "${var.project}"
+  env         = "${var.env}"
+  customer    = "${var.customer}"
+  aws_region  = "${var.aws_region}"
+  #####################################
+
+  # Domain used for emailing
+  mail_domain = "example.com"
+
+  # If you need to create a sqs (for example used for bounce emails)
+  # create_sqs  = "true"
+}

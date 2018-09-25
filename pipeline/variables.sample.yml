@@ -1,0 +1,33 @@
+env: ($ environment $)
+project: ($ project $)
+customer: ($ organization_canonical $)
+
+#
+# Terraform
+#
+
+# Amazon access to use to run terraform. Usually admin account to be able to create Amazon services.
+aws_access_key: ((aws.access_key))
+aws_secret_key: ((aws.secret_key))
+aws_default_region: eu-west-1
+
+# Bucket configuration to store terraform remote state file.
+terraform_storage_access_key: ((aws.access_key))
+terraform_storage_secret_key: ((aws.secret_key))
+terraform_storage_bucket_name: ($ organization_canonical $)-terraform-remote-state
+terraform_storage_bucket_path: ($ project $)/($ environment $)
+
+#
+# Repos
+#
+
+# If you need to use a specific branch of ses-stack
+ses_stack_git_branch: master
+
+# Configuration of the git repository used to configure the stack
+ses_config_git_repository: git@github.com:MyUser/config-ses.git
+ses_config_git_branch: master
+
+ses_config_terraform_path: ($ project $)/terraform/($ environment $)
+
+ses_config_git_private_key: ((git_ses_config.ssh_key))

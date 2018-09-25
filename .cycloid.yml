@@ -20,4 +20,4 @@ config:
   terraform:
     ses:
       path: 'terraform/ses.tf.sample'
-      destination: 'terraform/ses/($ environment $)/ses.tf'
+      destination: '($ project $)/terraform/($ environment $)/ses.tf'
