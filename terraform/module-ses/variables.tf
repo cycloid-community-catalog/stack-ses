@@ -9,6 +9,12 @@ variable "project" {
   default = "ses"
 }
 
+# A default is provided to avoid forcing to specify it
+variable "vpc_id" {
+  description = "The VPC ID to use when creating Security Groups entities"
+  default     = "unset"
+}
+
 ###
 # ses
 ###
@@ -20,6 +26,58 @@ variable "mail_domain" {}
 # sns
 ###
 variable "create_sqs" {
-  description = "**true** create a sqs generaly used for bounce email"
-  default     = "true"
+  description = "**true** to create an sqs generaly used for bounce email"
+  default     = "false"
+}
+
+###
+# redis
+###
+variable "create_elasticache" {
+  description = "**true** to create an elasticache generaly used for queuing email"
+  default     = "false"
+}
+
+variable "elasticache_type" {
+  default = "cache.t2.micro"
+}
+
+variable "elasticache_name" {
+  description = "Variable used for tagging / naming resources"
+  default = "redis"
+}
+
+variable "elasticache_port" {
+  default = "6379"
+}
+
+variable "elasticache_parameter_group_name" {
+  default = "default.redis5.0.cluster.on"
+}
+
+variable "elasticache_engine_version" {
+  default = "5.0.0"
+}
+
+variable "elasticache_replicas_per_node_group" {
+  description = "Number of read replica, should be between 0 and 5."
+  default = "1"
+}
+
+variable "elasticache_automatic_failover_enabled" {
+  default = true
+}
+
+variable "elasticache_num_node_groups" {
+  default = "2"
+}
+
+variable "elasticache_security_groups" {
+  description = "Those security groups will be granted access to the elasticache cluster."
+  type        = "list"
+  default     = []
+}
+
+variable "elasticache_maintenance_window" {
+  default = "tue:06:00-tue:07:00"
 }
