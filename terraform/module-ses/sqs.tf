@@ -3,7 +3,7 @@
 ###
 
 resource "aws_sns_topic" "email_delivery_topic" {
-  name = "${var.project}_email_delivery_topic"
+  name = "${var.project}_${var.env}_email_delivery_topic"
 }
 
 resource "aws_ses_identity_notification_topic" "bounce_notifications" {
@@ -34,7 +34,7 @@ resource "aws_sns_topic_subscription" "email_delivery_queue_topic_subscription" 
 
 resource "aws_sqs_queue" "email_delivery_queue" {
   count                      = "${var.create_sqs == "true" ? 1 : 0}"
-  name                       = "${var.project}_email_delivery"
+  name                       = "${var.project}_${var.env}_email_delivery"
   delay_seconds              = 90
   max_message_size           = 2048
   message_retention_seconds  = 86400
