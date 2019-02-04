@@ -4,7 +4,7 @@
 
 # Create IAM users
 resource "aws_iam_user" "ses_smtp_user" {
-  name = "ses_smtp_user_${var.project}"
+  name = "${var.project}-${var.env}-ses_smtp_user"
   path = "/${var.project}/"
 }
 
@@ -24,13 +24,13 @@ data "aws_iam_policy_document" "sqs_access" {
   statement {
     effect    = "Allow"
     actions   = ["sqs:*"]
-    resources = ["arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.project}_email_delivery"]
+    resources = ["arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.project}_${var.env}_email_delivery"]
   }
 }
 
 resource "aws_iam_policy" "sqs_access" {
   count  = "${var.create_sqs == "true" ? 1 : 0}"
-  name   = "${var.project}-sqs-access"
+  name   = "${var.project}-${var.env}-sqs-access"
   path   = "/${var.project}/"
   policy = "${data.aws_iam_policy_document.sqs_access.json}"
 }
