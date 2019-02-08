@@ -21,3 +21,7 @@ output "iam_ses_smtp_user_secret" {
 output "aws_sqs_queue_url" {
   value = "${element(concat(aws_sqs_queue.email_delivery_queue.*.id, list("")), 0)}"
 }
+
+output "elasticache_endpoint" {
+  value = "${aws_elasticache_replication_group.redis-cluster.*.configuration_endpoint_address}"
+}

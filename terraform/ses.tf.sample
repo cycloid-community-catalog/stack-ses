@@ -13,4 +13,18 @@ module "ses" {
 
   # If you need to create a sqs (for example used for bounce emails)
   # create_sqs  = "true"
+
+  # If you need to create an elasticache (for example used for sending/queing emails)
+  # create_elasitcache  = "true"
+  # elasticache_security_groups = ["secgroup1", "secgroup2"]
+  # vpc_id = "vpc-id"
 }
+
+# If you desire create a R53 record for the redis
+# resource "aws_route53_record" "redis" {
+#   zone_id = "xxxx"
+#   name    = "xxxx"
+#   type    = "CNAME"
+#   ttl     = "3600"
+#   records = ["${modue.ses.elasticache_endpoint}"]
+# }

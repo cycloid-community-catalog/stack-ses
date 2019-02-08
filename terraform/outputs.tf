@@ -19,3 +19,8 @@ output "iam_ses_smtp_user_secret" {
 output "aws_sqs_queue_url" {
   value = "${module.ses.aws_sqs_queue_url}"
 }
+
+# elsticache
+output "elasticache_endpoint" {
+  value = "${module.ses.elasticache_endpoint}"
+}
