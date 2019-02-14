@@ -31,6 +31,8 @@ resource "aws_elasticache_replication_group" "redis-cluster" {
   engine_version                = "${var.elasticache_engine_version}"
   parameter_group_name          = "${var.elasticache_parameter_group_name}"
   automatic_failover_enabled    = "${var.elasticache_automatic_failover_enabled}"
+  security_group_ids            = ["${aws_security_group.redis.id}"]
+  subnet_group_name             = "${var.elasticache_subnet_group_name}"
 
   cluster_mode {
     replicas_per_node_group = "${var.elasticache_replicas_per_node_group}"

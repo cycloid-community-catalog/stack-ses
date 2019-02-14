@@ -55,6 +55,10 @@ variable "elasticache_parameter_group_name" {
   default = "default.redis5.0.cluster.on"
 }
 
+variable "elasticache_subnet_group_name" {
+  default = ""
+}
+
 variable "elasticache_engine_version" {
   default = "5.0.0"
 }
