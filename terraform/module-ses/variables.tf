@@ -73,7 +73,7 @@ variable "elasticache_automatic_failover_enabled" {
 }
 
 variable "elasticache_num_node_groups" {
-  default = "2"
+  default = "1"
 }
 
 variable "elasticache_security_groups" {
