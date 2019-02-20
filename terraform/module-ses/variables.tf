@@ -55,6 +55,10 @@ variable "elasticache_parameter_group_name" {
   default = "default.redis5.0.cluster.on"
 }
 
+variable "elasticache_subnet_group_name" {
+  default = ""
+}
+
 variable "elasticache_engine_version" {
   default = "5.0.0"
 }
@@ -69,7 +73,7 @@ variable "elasticache_automatic_failover_enabled" {
 }
 
 variable "elasticache_num_node_groups" {
-  default = "2"
+  default = "1"
 }
 
 variable "elasticache_security_groups" {

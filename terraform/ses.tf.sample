@@ -17,6 +17,7 @@ module "ses" {
   # If you need to create an elasticache (for example used for sending/queing emails)
   # create_elasitcache  = "true"
   # elasticache_security_groups = ["secgroup1", "secgroup2"]
+  # elasticache_subnet_group_name = "cache_subnet"
   # vpc_id = "vpc-id"
 }
 
