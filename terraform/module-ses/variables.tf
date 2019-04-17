@@ -44,7 +44,7 @@ variable "elasticache_type" {
 
 variable "elasticache_name" {
   description = "Variable used for tagging / naming resources"
-  default = "redis"
+  default     = "redis"
 }
 
 variable "elasticache_port" {
@@ -65,7 +65,7 @@ variable "elasticache_engine_version" {
 
 variable "elasticache_replicas_per_node_group" {
   description = "Number of read replica, should be between 0 and 5."
-  default = "1"
+  default     = "1"
 }
 
 variable "elasticache_automatic_failover_enabled" {
