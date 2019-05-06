@@ -9,7 +9,7 @@ resource "aws_security_group" "redis" {
     to_port   = "${var.elasticache_port}"
     protocol  = "tcp"
 
-    security_groups = [ "${var.elasticache_security_groups}" ]
+    security_groups = ["${var.elasticache_security_groups}"]
   }
 
   tags {
@@ -48,4 +48,3 @@ resource "aws_elasticache_replication_group" "redis-cluster" {
     cycloid.io = "true"
   }
 }
-
