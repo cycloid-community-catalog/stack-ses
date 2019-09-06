@@ -16,6 +16,8 @@ technologies:
     version: n/a
   - technology: Amazon SQS
     version: n/a
+  - technology: terraform
+    version: n/a
 
 author: 'Cycloid'
 image: 'https://raw.githubusercontent.com/cycloid-community-catalog/stack-ses/master/icon.png'
