@@ -64,8 +64,8 @@ In order to run this task, couple elements are required within the infrastructur
 |Name|Description|Type|Default|Required|
 |---|---|:---:|:---:|:---:|
 |`aws_region`|Name of the region where the infrastructure is created|`-`|`us-east-1`|`False`|
-|`create_elasitcache`|If you need to create an elasticache (for example used for sending/queing emails)|`string`|`"false"`|`False`|
-|`create_sqs`|If you need to create a sqs (for example used for bounce emails)|`string`|`"false"`|`False`|
+|`create_elasitcache`|If you need to create an elasticache (for example used for sending/queing emails)|`bool`|`false`|`False`|
+|`create_sqs`|If you need to create a sqs (for example used for bounce emails)|`bool`|`false`|`False`|
 |`elasticache_security_groups`|Those security groups will be granted access to the elasticache cluster|`list`|`[]`|`False`|
 |`elasticache_subnet_group_name`|Name of an Amazon elasticache subnet group to use|`-`|`redis`|`False`|
 |`elasticache_type`|Instance type to use for the elasticache cluster|`-`|`cache.t2.micro`|`False`|

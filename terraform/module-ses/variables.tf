@@ -2,8 +2,11 @@ variable "aws_region" {
   default = "eu-west-1"
 }
 
-variable "env" {}
-variable "customer" {}
+variable "env" {
+}
+
+variable "customer" {
+}
 
 variable "project" {
   default = "ses"
@@ -20,14 +23,15 @@ variable "vpc_id" {
 ###
 
 #verified domain used to send email
-variable "mail_domain" {}
+variable "mail_domain" {
+}
 
 ###
 # sns
 ###
 variable "create_sqs" {
   description = "**true** to create an sqs generaly used for bounce email"
-  default     = "false"
+  default     = false
 }
 
 ###
@@ -35,7 +39,7 @@ variable "create_sqs" {
 ###
 variable "create_elasticache" {
   description = "**true** to create an elasticache generaly used for queuing email"
-  default     = "false"
+  default     = false
 }
 
 variable "elasticache_type" {
@@ -78,10 +82,11 @@ variable "elasticache_num_node_groups" {
 
 variable "elasticache_security_groups" {
   description = "Those security groups will be granted access to the elasticache cluster."
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "elasticache_maintenance_window" {
   default = "tue:06:00-tue:07:00"
 }
+
