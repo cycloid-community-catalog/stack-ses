@@ -21,9 +21,11 @@ module "ses" {
 
   #. create_sqs (optional, bool): false
   #+ If you need to create a sqs (for example used for bounce emails)
+  create_sqs = true
 
   #. create_elasticache (optional, bool): false
   #+ If you need to create an elasticache (for example used for sending/queing emails)
+  create_elasticache = true
 
   #. elasticache_security_groups (optional, list): []
   #+ Those security groups will be granted access to the elasticache cluster

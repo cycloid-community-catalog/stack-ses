@@ -9,16 +9,17 @@ resource "aws_iam_user" "ses_smtp_user" {
 }
 
 resource "aws_iam_access_key" "ses_smtp_user" {
-  user = "${aws_iam_user.ses_smtp_user.name}"
+  user = aws_iam_user.ses_smtp_user.name
 }
 
 # SES Full Access
 resource "aws_iam_user_policy_attachment" "email_ses" {
-  user       = "${aws_iam_user.ses_smtp_user.name}"
+  user       = aws_iam_user.ses_smtp_user.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSESFullAccess"
 }
 
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {
+}
 
 data "aws_iam_policy_document" "sqs_access" {
   statement {
@@ -29,14 +30,15 @@ data "aws_iam_policy_document" "sqs_access" {
 }
 
 resource "aws_iam_policy" "sqs_access" {
-  count  = "${var.create_sqs == "true" ? 1 : 0}"
+  count  = var.create_sqs ? 1 : 0
   name   = "${var.project}-${var.env}-sqs-access"
   path   = "/${var.project}/"
-  policy = "${data.aws_iam_policy_document.sqs_access.json}"
+  policy = data.aws_iam_policy_document.sqs_access.json
 }
 
 resource "aws_iam_user_policy_attachment" "sqs_access" {
-  count      = "${var.create_sqs == "true" ? 1 : 0}"
-  user       = "${aws_iam_user.ses_smtp_user.name}"
-  policy_arn = "${aws_iam_policy.sqs_access.arn}"
+  count      = var.create_sqs ? 1 : 0
+  user       = aws_iam_user.ses_smtp_user.name
+  policy_arn = aws_iam_policy.sqs_access[0].arn
 }
+
