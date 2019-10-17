@@ -6,11 +6,7 @@ module "ses" {
   env         = var.env
   customer    = var.customer
   #####################################
-
-  #. aws_region: us-east-1
-  #+ Name of the region where the infrastructure is created
-  aws_region = var.aws_region
-
+  
   #. vpc_id (required):
   #+ Amazon VPC id on which create each components.
   vpc_id                   = "<vpc-id>"
