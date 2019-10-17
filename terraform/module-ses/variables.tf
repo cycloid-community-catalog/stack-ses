@@ -12,6 +12,20 @@ variable "project" {
   default = "ses"
 }
 
+variable "extra_tags" {
+  default = {}
+}
+
+locals {
+  standard_tags = {
+    "cycloid.io" = "true"
+    env          = var.env
+    project      = var.project
+    customer     = var.customer
+  }
+  merged_tags = merge(local.standard_tags, var.extra_tags)
+}
+
 # A default is provided to avoid forcing to specify it
 variable "vpc_id" {
   description = "The VPC ID to use when creating Security Groups entities"

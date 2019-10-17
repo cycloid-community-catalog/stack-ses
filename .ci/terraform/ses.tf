@@ -35,6 +35,10 @@ module "ses" {
 
   #. elasticache_type (optional): cache.t2.micro
   #+ Instance type to use for the elasticache cluster
+  
+  #. extra_tags (optional): {}
+  #+ Dict of extra tags to add on aws resources.
+  extra_tags = { "foo" = "bar" }
 
 }
 
