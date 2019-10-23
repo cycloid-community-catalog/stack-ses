@@ -34,7 +34,6 @@ module "ses" {
   
   #. extra_tags (optional): {}
   #+ Dict of extra tags to add on aws resources.
-  extra_tags = { "foo" = "bar" }
 
 }
 
