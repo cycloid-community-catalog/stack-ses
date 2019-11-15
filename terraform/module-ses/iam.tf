@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "sqs_access" {
   statement {
     effect    = "Allow"
     actions   = ["sqs:*"]
-    resources = ["arn:aws:sqs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:${var.project}_${var.env}_email_delivery"]
+    resources = ["arn:aws:sqs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.project}_${var.env}_email_delivery"]
   }
 }
 

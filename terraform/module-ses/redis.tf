@@ -12,14 +12,10 @@ resource "aws_security_group" "redis" {
     security_groups = var.elasticache_security_groups
   }
 
-  tags = {
+  tags = merge(local.merged_tags, {
     Name         = "${var.project}-${var.elasticache_name}-${var.env}"
-    client       = var.customer
-    env          = var.env
-    project      = var.project
     role         = var.elasticache_name
-    "cycloid.io" = "true"
-  }
+  })
 }
 
 resource "aws_elasticache_replication_group" "redis-cluster" {
@@ -39,13 +35,9 @@ resource "aws_elasticache_replication_group" "redis-cluster" {
     num_node_groups         = var.elasticache_num_node_groups
   }
 
-  tags = {
+  tags = merge(local.merged_tags, {
     Name         = "${var.project}-${var.elasticache_name}-${var.env}"
-    client       = var.customer
-    env          = var.env
-    project      = var.project
     role         = var.elasticache_name
-    "cycloid.io" = "true"
-  }
+  })
 }
 

@@ -69,6 +69,7 @@ In order to run this task, couple elements are required within the infrastructur
 |`elasticache_security_groups`|Those security groups will be granted access to the elasticache cluster|`list`|`[]`|`False`|
 |`elasticache_subnet_group_name`|Name of an Amazon elasticache subnet group to use|`-`|`redis`|`False`|
 |`elasticache_type`|Instance type to use for the elasticache cluster|`-`|`cache.t2.micro`|`False`|
+|`extra_tags`|Dict of extra tags to add on aws resources. format { "foo" = "bar" }.|`-`|`{}`|`False`|
 |`mail_domain`|Domain used for emailing|`-`|``|`True`|
 |`vpc_id`|Amazon VPC id on which create each components.|`-`|``|`True`|
 

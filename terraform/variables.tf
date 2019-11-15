@@ -6,4 +6,3 @@ variable "project" {
 
 variable "customer" {
 }
-

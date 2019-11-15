@@ -41,15 +41,10 @@ resource "aws_sqs_queue" "email_delivery_queue" {
   receive_wait_time_seconds  = 10
   visibility_timeout_seconds = 300
 
-  tags = {
-    "cycloid.io" = "true"
+  tags = merge(local.merged_tags, {
     Name         = "${var.project}-sqs-${var.env}"
-    env          = var.env
-    client       = var.customer
-    customer     = var.customer
-    project      = var.project
     role         = "sqs"
-  }
+  })
 }
 
 data "aws_iam_policy_document" "allow_sendmessage" {

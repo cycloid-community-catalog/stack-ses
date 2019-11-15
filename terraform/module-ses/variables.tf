@@ -1,6 +1,4 @@
-variable "aws_region" {
-  default = "eu-west-1"
-}
+data "aws_region" "current" {}
 
 variable "env" {
 }
@@ -10,6 +8,20 @@ variable "customer" {
 
 variable "project" {
   default = "ses"
+}
+
+variable "extra_tags" {
+  default = {}
+}
+
+locals {
+  standard_tags = {
+    "cycloid.io" = "true"
+    env          = var.env
+    project      = var.project
+    customer     = var.customer
+  }
+  merged_tags = merge(local.standard_tags, var.extra_tags)
 }
 
 # A default is provided to avoid forcing to specify it
