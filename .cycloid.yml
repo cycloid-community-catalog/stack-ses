@@ -1,6 +1,7 @@
 # Configuration of the CI pipeline
 name: 'ses'
 canonical: 'ses'
+status: 'public'
 description: 'Simple Email Service stack will create an SES iam user and optionally a Redis or SQS queue if needed to manage bounced emails.'
 keywords:
   - 'ses'
