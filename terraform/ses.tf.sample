@@ -17,22 +17,28 @@ module "ses" {
 
   #. create_sqs (optional, bool): false
   #+ If you need to create a sqs (for example used for bounce emails)
+  create_sqs = false
 
   #. create_elasticache (optional, bool): false
   #+ If you need to create an elasticache (for example used for sending/queing emails)
+  create_elasticache = false
 
   #. elasticache_security_groups (optional, list): []
   #+ Those security groups will be granted access to the elasticache cluster
+  elasticache_security_groups = []
 
   #. elasticache_subnet_group_name (optional): redis
   #+ Name of an Amazon elasticache subnet group to use
+  elasticache_subnet_group_name = "redis"
 
   #. elasticache_type (optional): cache.t2.micro
   #+ Instance type to use for the elasticache cluster
-  
+  elasticache_type = cache.t2.micro
+
   #. extra_tags (optional): {}
   #+ Dict of extra tags to add on aws resources.
   #extra_tags = { "foo" = "bar" }
+  extra_tags = {}
 
 }
 
