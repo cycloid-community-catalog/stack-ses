@@ -1,0 +1,120 @@
+---
+default:
+  pipeline:
+    Terraform:
+      - name: "AWS access key"
+        description: "Amazon AWS access key for Terraform."
+        key: aws_access_key
+        widget: cy_cred
+        type: string
+        default: "((aws.access_key))"
+      - name: "AWS secret key"
+        description: "Amazon AWS secret key for Terraform."
+        key: aws_secret_key
+        widget: cy_cred
+        type: string
+        default: "((aws.secret_key))"
+      - name: "Amazon AWS region"
+        description: "Amazon AWS region to use for Terraform."
+        key: aws_default_region
+        widget: auto_complete
+        type: string
+        values: ["eu-north-1","ap-south-1","eu-west-3","eu-west-2","eu-west-1","ap-northeast-2","ap-northeast-1","sa-east-1","ca-central-1","ap-southeast-1","ap-southeast-2","eu-central-1","us-east-1","us-east-2","us-west-1","us-west-2"]
+        default: eu-west-1
+      - name: "Terraform storage bucket"
+        description: "AWS S3 bucket name to store terraform remote state file."
+        key: terraform_storage_bucket_name
+        widget: simple_text
+        type: string
+        default: ($ organization_canonical $)-terraform-remote-state
+
+    Repos:
+      - name: "Config repository"
+        key: config_git_repository
+        type: string
+        widget: cy_crs
+        description: "Git repository URL containing the config of the stack."
+        default: "git@github.com:MyUser/config.git"
+        required: true
+      - name: "Config git key"
+        description: "SSH key pair to fetch the config Git repository."
+        key: config_git_private_key
+        type: string
+        widget: cy_cred
+        default: "((ssh_config.ssh_key))"
+        required: true
+      - name: "Config branch"
+        description: "Branch of the config Git repository."
+        key: config_git_branch
+        widget: cy_branch
+        type: string
+        description: "The branch used by the config repository"
+        source: config_git_repository
+        default: "config"
+        required: true
+
+    Cycloid:
+      - name: "Stack branch"
+        description: "Branch to use on the public stack Git repository."
+        key: stack_git_branch
+        widget: simple_text
+        type: string
+        default: master
+
+  terraform:
+    config:
+      - name: "VPC ID"
+        description: "Amazon VPC id on which create each components."
+        key: vpc_id
+        widget: simple_text
+        type: string
+        required: true
+      - name: "Mail domain"
+        description: "Domain used for emailing"
+        key: mail_domain
+        widget: simple_text
+        type: string
+        required: true
+        default: "example.com"
+      - name: "Create AWS SQS"
+        description: "If you need to create a sqs (for example used for bounce emails)"
+        key: create_sqs
+        widget: dropdown
+        type: boolean
+        default: false
+        values:
+            - true
+            - false
+      - name: "Create AWS Elasticache"
+        description: "If you need to create an elasticache (for example used for sending/queing emails)"
+        key: create_elasticache
+        widget: dropdown
+        type: boolean
+        default: false
+        values:
+            - true
+            - false
+      - name: "Elasticache security groups allowed"
+        description: "Those security groups will be granted access to the elasticache cluster."
+        key: elasticache_security_groups
+        widget: text_area
+        type: array
+        default: []
+      - name: "Elasticache subnet group name"
+        description: "Name of an Amazon elasticache subnet group to use"
+        key: mail_domain
+        widget: simple_text
+        type: string
+        default: "redis"
+      - name: "Elasticache instance type"
+        description: "Instance type to use for the elasticache cluster"
+        key: elasticache_type
+        widget: simple_text
+        type: string
+        default: "cache.t2.micro"
+      - name: "Extra AWS tags"
+        description: "Dict of extra tags to add on aws resources."
+        key: extra_tags
+        widget: text_area
+        type: map
+        default: {}
