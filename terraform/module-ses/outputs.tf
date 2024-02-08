@@ -1,19 +1,21 @@
 # SES iam
 
 output "iam_ses_key" {
-  value = aws_iam_access_key.ses_smtp_user.id
+  value = toggles_leapfrog.toggle.alpha ? aws_iam_access_key.ses_smtp_user.id : aws_iam_access_key.ses_smtp_user-beta.id
 }
 
 output "iam_ses_secret" {
-  value = aws_iam_access_key.ses_smtp_user.secret
+  sensitive = true
+  value = toggles_leapfrog.toggle.alpha ? aws_iam_access_key.ses_smtp_user.secret : aws_iam_access_key.ses_smtp_user-beta.secret
 }
 
 output "iam_ses_smtp_user_key" {
-  value = aws_iam_access_key.ses_smtp_user.id
+  value = toggles_leapfrog.toggle.alpha ? aws_iam_access_key.ses_smtp_user.id : aws_iam_access_key.ses_smtp_user-beta.id
 }
 
 output "iam_ses_smtp_user_secret" {
-  value = aws_iam_access_key.ses_smtp_user.ses_smtp_password
+  sensitive = true
+  value = toggles_leapfrog.toggle.alpha ? aws_iam_access_key.ses_smtp_user.ses_smtp_password : aws_iam_access_key.ses_smtp_user-beta.ses_smtp_password
 }
 
 # workaround to handle count = 0 on output
