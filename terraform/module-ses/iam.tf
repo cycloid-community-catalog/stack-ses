@@ -8,7 +8,21 @@ resource "aws_iam_user" "ses_smtp_user" {
   path = "/${var.project}/"
 }
 
+
+# access key toogle creation
+resource "time_rotating" "toggle_interval" {
+  rotation_days = 90
+}
+
+resource "toggles_leapfrog" "toggle" {
+  trigger = time_rotating.toggle_interval.rotation_rfc3339
+}
+
 resource "aws_iam_access_key" "ses_smtp_user" {
+  user = aws_iam_user.ses_smtp_user.name
+}
+
+resource "aws_iam_access_key" "ses_smtp_user-beta" {
   user = aws_iam_user.ses_smtp_user.name
 }
 
