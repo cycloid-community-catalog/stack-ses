@@ -15,7 +15,7 @@ output "iam_ses_smtp_user_key" {
 
 output "iam_ses_smtp_user_secret" {
   sensitive = true
-  value = toggles_leapfrog.toggle.alpha ? aws_iam_access_key.ses_smtp_user.ses_smtp_password : aws_iam_access_key.ses_smtp_user-beta.ses_smtp_password
+  value = toggles_leapfrog.toggle.alpha ? aws_iam_access_key.ses_smtp_user.ses_smtp_password : aws_iam_access_key.ses_smtp_user-beta.ses_smtp_password_v4
 }
 
 # workaround to handle count = 0 on output
