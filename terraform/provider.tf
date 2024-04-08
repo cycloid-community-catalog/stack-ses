@@ -5,14 +5,6 @@ provider "aws" {
   version    = "~> 2.32"
 }
 
-variable "access_key" {
-}
-
-variable "secret_key" {
-}
-
-variable "aws_region" {
-  description = "AWS region to launch servers."
-  default     = "eu-west-1"
-}
-
+# required to allow to toggle aws access keys
+# based on issue here: https://github.com/hashicorp/terraform-provider-aws/issues/23180
+provider "toggles" {}
